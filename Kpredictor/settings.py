@@ -27,6 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Account.apps.AccountConfig',
+    'news.apps.NewsConfig',
+    'predictor.apps.PredictorConfig',
+    'widget_tweaks',
+    
 ]
 
 MIDDLEWARE = [
@@ -98,7 +102,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'elhamuddinmayar@gmail.com'           # <-- Your Gmail address
-EMAIL_HOST_PASSWORD = 'pppaixcjrmpkbkdb'     # <-- Your 16-char App Password
+EMAIL_HOST_PASSWORD = 'zgmqumdoxcxvotxq'     # <-- Your 16-char App Password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 

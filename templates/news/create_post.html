@@ -1,0 +1,19 @@
+<h2>Create Post</h2>
+
+{% if error %}
+<p style="color: red">{{ error }}</p>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label>Text:</label><br />
+  <textarea name="text" rows="4" cols="40"></textarea><br /><br />
+
+  <label>Image:</label><br />
+  <input type="file" name="image" accept="image/*" /><br /><br />
+
+  <label>Video:</label><br />
+  <input type="file" name="video" accept="video/*" /><br /><br />
+
+  <button type="submit">Post</button>
+</form>

@@ -4,9 +4,10 @@ from .import views
 
 
 urlpatterns = [
-    path('second/', views.second, name='second'),
+    path('second/', views.welcome, name='second'),
     path("register/",views.register,name="register"),
     path("login/", views.login_view, name="login"),
+    path("logout/", views.log_out_view, name="logout"),
     path('password-reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),

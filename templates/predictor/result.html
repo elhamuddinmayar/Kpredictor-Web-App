@@ -1,0 +1,303 @@
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prediction Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+    <nav class="bg-gray-800 shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center space-x-4">
+            <a
+              href="#"
+              class="text-xl font-semibold text-indigo-400 flex items-center space-x-2"
+            >
+              <i class="fas fa-bullseye"></i>
+              <span id="nav-title">Prediction Results</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <label for="language-select" class="sr-only" id="lang-label"
+              >Select Language</label
+            >
+            <select
+              id="language-select"
+              aria-labelledby="lang-label"
+              class="bg-gray-700 text-gray-100 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="en" selected>English</option>
+              <option value="ps">پښتو</option>
+              <option value="fa">دری</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <section>
+        <h2
+          id="title-valuable"
+          class="text-2xl font-semibold mb-4 flex items-center space-x-2"
+        >
+          <span>🎯</span>
+          <span>Top 10 Most Valuable Faculties</span>
+        </h2>
+        <div class="overflow-x-auto rounded-lg shadow-lg">
+          <table class="min-w-full divide-y divide-gray-700 table-auto">
+            <thead class="bg-gray-700">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-faculty"
+                >
+                  Faculty
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-average-score"
+                >
+                  Average Score
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-lowest-score"
+                >
+                  Lowest Score
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-highest-score"
+                >
+                  Highest Score
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-pass-chance"
+                >
+                  Pass Chance (%)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-gray-800 divide-y divide-gray-700">
+              {% for faculty in valuable_faculties %}
+              <tr>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.faculty }}
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.average_score }}
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.lowest_score }}
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.highest_score }}
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.pass_chance }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mt-12">
+        <h2
+          id="title-best-matching"
+          class="text-2xl font-semibold mb-4 flex items-center space-x-2"
+        >
+          <span>🎯</span>
+          <span>Top 10 Best Matching Faculties Based on Your Scores</span>
+        </h2>
+        <div class="overflow-x-auto rounded-lg shadow-lg">
+          <table class="min-w-full divide-y divide-gray-700 table-auto">
+            <thead class="bg-gray-700">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-faculty-2"
+                >
+                  Faculty
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-average-score-2"
+                >
+                  Average Score
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-lowest-score-2"
+                >
+                  Lowest Score
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-highest-score-2"
+                >
+                  Highest Score
+                </th>
+                <th
+                  scope="col"
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                  id="th-pass-chance-2"
+                >
+                  Pass Chance (%)
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-gray-800 divide-y divide-gray-700">
+              {% for faculty in best_matching_faculties %}
+              <tr>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.faculty }}
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.average_score }}
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.lowest_score }}
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.highest_score }}
+                </td>
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-200">
+                  {{ faculty.pass_chance }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="mt-10">
+        <a
+          href="{% url 'input' %}"
+          id="back-button"
+          class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-md transition"
+          >Go Back</a
+        >
+      </div>
+    </main>
+
+    <script>
+      const translations = {
+        en: {
+          navTitle: "Prediction Results",
+          langLabel: "Select Language",
+          titleValuable: "Top 10 Most Valuable Faculties",
+          titleBestMatching:
+            "Top 10 Best Matching Faculties Based on Your Scores",
+          thFaculty: "Faculty",
+          thAverageScore: "Average Score",
+          thLowestScore: "Lowest Score",
+          thHighestScore: "Highest Score",
+          thPassChance: "Pass Chance (%)",
+          backButton: "Go Back",
+        },
+        ps: {
+          navTitle: "د وړاندوینې پایلې",
+          langLabel: "ژبه وټاکئ",
+          titleValuable: "🎯 تر ټولو ګټورې ۱۰ پوهنځي",
+          titleBestMatching:
+            "🎯 ستاسو د نمرې پراساس تر ټولو غوره ۱۰ مناسب پوهنځي",
+          thFaculty: "پوهنځی",
+          thAverageScore: "اوسط نمره",
+          thLowestScore: "ټیټه نمره",
+          thHighestScore: "لوړه نمره",
+          thPassChance: "د بریا چانس (%)",
+          backButton: "بېرته لاړ شه",
+        },
+        fa: {
+          navTitle: "نتایج پیش‌بینی",
+          langLabel: "زبان را انتخاب کنید",
+          titleValuable: "🎯 ۱۰ دانشکده با ارزش‌ترین",
+          titleBestMatching: "🎯 ۱۰ دانشکده بهترین تطابق بر اساس نمرات شما",
+          thFaculty: "دانشکده",
+          thAverageScore: "میانگین نمره",
+          thLowestScore: "کمترین نمره",
+          thHighestScore: "بیشترین نمره",
+          thPassChance: "شانس قبولی (%)",
+          backButton: "بازگشت",
+        },
+      };
+
+      const languageSelect = document.getElementById("language-select");
+
+      function updateLanguage(lang) {
+        const t = translations[lang] || translations.en;
+        document.getElementById("nav-title").textContent = t.navTitle;
+        document.getElementById("lang-label").textContent = t.langLabel;
+        document
+          .getElementById("title-valuable")
+          .querySelector("span:last-child").textContent =
+          t.titleValuable.replace("🎯 ", "");
+        document
+          .getElementById("title-best-matching")
+          .querySelector("span:last-child").textContent =
+          t.titleBestMatching.replace("🎯 ", "");
+        document.getElementById("th-faculty").textContent = t.thFaculty;
+        document.getElementById("th-average-score").textContent =
+          t.thAverageScore;
+        document.getElementById("th-lowest-score").textContent =
+          t.thLowestScore;
+        document.getElementById("th-highest-score").textContent =
+          t.thHighestScore;
+        document.getElementById("th-pass-chance").textContent = t.thPassChance;
+        document.getElementById("th-faculty-2").textContent = t.thFaculty;
+        document.getElementById("th-average-score-2").textContent =
+          t.thAverageScore;
+        document.getElementById("th-lowest-score-2").textContent =
+          t.thLowestScore;
+        document.getElementById("th-highest-score-2").textContent =
+          t.thHighestScore;
+        document.getElementById("th-pass-chance-2").textContent =
+          t.thPassChance;
+        document.getElementById("back-button").textContent = t.backButton;
+
+        // Update emojis in headings
+        document
+          .getElementById("title-valuable")
+          .querySelector("span:first-child").textContent = "🎯";
+        document
+          .getElementById("title-best-matching")
+          .querySelector("span:first-child").textContent = "🎯";
+      }
+
+      languageSelect.addEventListener("change", (e) => {
+        updateLanguage(e.target.value);
+      });
+
+      // Initialize language on page load
+      updateLanguage(languageSelect.value);
+    </script>
+  </body>
+</html>

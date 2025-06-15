@@ -1,0 +1,719 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Score Predictor - Welcome</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #000000 0%, #222222 100%);
+        min-height: 100vh;
+        margin: 0;
+        color: white;
+        overflow-x: hidden;
+        animation: fadeInPage 1.2s ease forwards;
+        opacity: 0;
+      }
+      @keyframes fadeInPage {
+        to {
+          opacity: 1;
+        }
+      }
+      nav {
+        background-color: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        width: 100%;
+        z-index: 1030;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        animation: slideDownNav 0.8s ease forwards;
+        transform: translateY(-100%);
+      }
+      @keyframes slideDownNav {
+        to {
+          transform: translateY(0);
+        }
+      }
+      .nav-link {
+        color: white !important;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #d1d1d1 !important;
+      }
+      .brand {
+        font-weight: 700;
+        font-size: 1.75rem;
+        letter-spacing: 0.05em;
+        color: white;
+        text-decoration: none;
+      }
+      .content-section,
+      .features-section,
+      .about-section,
+      .contact-section {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+        padding: 3rem 2rem;
+        max-width: 900px;
+        margin: 6rem auto 3rem auto;
+        opacity: 0;
+        animation: fadeInContent 1s ease forwards;
+      }
+      @keyframes fadeInContent {
+        to {
+          opacity: 1;
+        }
+      }
+      h1,
+      h2,
+      h3 {
+        font-weight: 800;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      h1 {
+        font-size: 3rem;
+        opacity: 0;
+        transform: translateX(-30px);
+        animation: slideInLeft 0.8s ease forwards;
+        animation-delay: 1s;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      p {
+        font-size: 1.125rem;
+        line-height: 1.6;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      }
+      ul.features-list {
+        list-style: none;
+        padding-left: 0;
+        max-width: 600px;
+        margin: 0 auto 2.5rem auto;
+      }
+      ul.features-list li {
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        position: relative;
+        padding-left: 1.75rem;
+      }
+      ul.features-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: white;
+        font-weight: 700;
+      }
+      .btn-predict {
+        font-weight: 700;
+        border-radius: 50px;
+        padding: 0.75rem 2.5rem;
+        box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.3);
+        color: black;
+        background-color: white;
+        border: none;
+        transition: background-color 0.3s ease;
+        opacity: 0;
+        transform: scale(0.8);
+        animation: popInButton 0.6s ease forwards;
+        animation-delay: 1.6s;
+        display: block;
+        margin: 0 auto;
+      }
+      .btn-predict:hover {
+        background-color: #e0e0e0;
+        color: black;
+      }
+      @keyframes slideInLeft {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes popInButton {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .feature-item {
+        margin-bottom: 2rem;
+      }
+      .feature-item img {
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+        max-width: 150px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+      .about-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        align-items: center;
+        justify-content: center;
+      }
+      .about-content img {
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+        max-width: 300px;
+        width: 100%;
+        height: auto;
+      }
+      .about-text {
+        max-width: 500px;
+        color: #d1d1d1;
+      }
+      .contact-section form label {
+        font-weight: 600;
+      }
+      .contact-section form input,
+      .contact-section form textarea {
+        border-radius: 0.5rem;
+        border: none;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+      .contact-section form input:focus,
+      .contact-section form textarea:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.7);
+      }
+      .contact-info {
+        margin-top: 2rem;
+        text-align: center;
+        color: #b0b0b0;
+      }
+      .contact-info p {
+        margin-bottom: 0.5rem;
+      }
+      @media (max-width: 768px) {
+        .about-content {
+          flex-direction: column;
+          text-align: center;
+        }
+        .about-text {
+          max-width: 100%;
+        }
+        h1 {
+          font-size: 2.25rem;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+      }
+      /* Language selector styles */
+      .language-selector {
+        color: white;
+        font-weight: 600;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+        font-size: 1rem;
+      }
+      .language-selector:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px white;
+      }
+      .navbar-nav {
+        align-items: center;
+      }
+      .nav-item.language-dropdown {
+        margin-left: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md">
+      <div
+        class="container px-3 d-flex align-items-center justify-content-between"
+      >
+        <a class="brand navbar-brand" href="#home"> Kankor Score Predictor </a>
+        <button
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          class="navbar-toggler"
+          data-bs-target="#navbarNav"
+          data-bs-toggle="collapse"
+          type="button"
+        >
+          <span class="navbar-toggler-icon" style="filter: invert(1)"> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto gap-3 align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="#home"> Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#features"> Features </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about"> About </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact"> Contact </a>
+            </li>
+            <li class="nav-item dropdown language-dropdown">
+              <button
+                class="btn btn-link nav-link dropdown-toggle language-selector"
+                id="languageDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                type="button"
+              >
+                English
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="languageDropdown"
+              >
+                <li>
+                  <button
+                    class="dropdown-item lang-option"
+                    data-lang="en"
+                    type="button"
+                  >
+                    English
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item lang-option"
+                    data-lang="ps"
+                    type="button"
+                  >
+                    پښتو (Pashto)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item lang-option"
+                    data-lang="fa"
+                    type="button"
+                  >
+                    دری (Dari)
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <!-- Home Section -->
+      <section class="content-section" id="home">
+        <h1 data-lang-key="home_title">Welcome to Kankor Score Predictor</h1>
+        <p data-lang-key="home_desc">
+          Predict your game scores with confidence and precision. Our advanced
+          algorithms help you forecast outcomes and stay ahead.
+        </p>
+        <ul class="features-list">
+          <li data-lang-key="feature1">
+            Accurate score predictions based on real data
+          </li>
+          <li data-lang-key="feature2">
+            User-friendly interface for quick access
+          </li>
+          <li data-lang-key="feature3">
+            Regular updates with latest sports statistics
+          </li>
+          <li data-lang-key="feature4">
+            Customizable alerts and notifications
+          </li>
+          <li data-lang-key="feature5">
+            Secure and private user data handling
+          </li>
+        </ul>
+        <button
+          class="btn-predict"
+          onclick="location.href='{% url 'input' %}'"
+          type="button"
+          data-lang-key="btn_predict"
+        >
+          Predict Score
+        </button>
+      </section>
+      <!-- Features Section -->
+      <section class="features-section" id="features">
+        <h2 data-lang-key="features_title">Features</h2>
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-6 feature-item text-center">
+            <img
+              alt="Illustration of data analytics with charts and graphs in futuristic style"
+              height="150"
+              src="https://storage.googleapis.com/a1aa/image/7464b3d8-2411-4096-a080-d49a4aed227f.jpg"
+              width="150"
+            />
+            <h3 data-lang-key="feature_analytics_title">
+              Advanced Data Analytics
+            </h3>
+            <p data-lang-key="feature_analytics_desc">
+              Leverage cutting-edge algorithms to analyze vast sports data for
+              precise score predictions.
+            </p>
+          </div>
+          <div class="col-12 col-md-6 feature-item text-center">
+            <img
+              alt="Modern user interface design with intuitive navigation and clean layout"
+              height="150"
+              src="https://storage.googleapis.com/a1aa/image/db3d6f04-1b5e-49fe-ade7-6bb97f9179e7.jpg"
+              width="150"
+            />
+            <h3 data-lang-key="feature_ui_title">User-Friendly Interface</h3>
+            <p data-lang-key="feature_ui_desc">
+              Navigate easily through a clean and intuitive design optimized for
+              all devices.
+            </p>
+          </div>
+          <div class="col-12 col-md-6 feature-item text-center">
+            <img
+              alt="Real-time updates icon with clock and refresh arrows in a sleek style"
+              height="150"
+              src="https://storage.googleapis.com/a1aa/image/8fcd7a86-30a9-47a9-072c-54c8aa76fd64.jpg"
+              width="150"
+            />
+            <h3 data-lang-key="feature_realtime_title">Real-Time Updates</h3>
+            <p data-lang-key="feature_realtime_desc">
+              Stay informed with the latest sports statistics and score changes
+              as they happen.
+            </p>
+          </div>
+          <div class="col-12 col-md-6 feature-item text-center">
+            <img
+              alt="Notification bell icon with alert symbol in modern flat design"
+              height="150"
+              src="https://storage.googleapis.com/a1aa/image/0e5b489d-a643-4519-4b8f-2822ead117fc.jpg"
+              width="150"
+            />
+            <h3 data-lang-key="feature_notifications_title">
+              Customizable Notifications
+            </h3>
+            <p data-lang-key="feature_notifications_desc">
+              Set personalized alerts to never miss important game updates or
+              predictions.
+            </p>
+          </div>
+          <div class="col-12 col-md-6 feature-item text-center">
+            <img
+              alt="Security shield icon representing data protection and privacy"
+              height="150"
+              src="https://storage.googleapis.com/a1aa/image/0bb346cf-ae3e-450d-334a-c617adca8509.jpg"
+              width="150"
+            />
+            <h3 data-lang-key="feature_security_title">Secure &amp; Private</h3>
+            <p data-lang-key="feature_security_desc">
+              Your data is protected with top-tier security measures ensuring
+              privacy and confidentiality.
+            </p>
+          </div>
+          <div class="col-12 col-md-6 feature-item text-center">
+            <img
+              alt="Customer support headset icon symbolizing 24/7 assistance"
+              height="150"
+              src="https://storage.googleapis.com/a1aa/image/56aeec20-4860-4ba9-c62f-dfd4e74a0251.jpg"
+              width="150"
+            />
+            <h3 data-lang-key="feature_support_title">24/7 Support</h3>
+            <p data-lang-key="feature_support_desc">
+              Our dedicated team is always ready to assist you with any
+              questions or issues.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- About Section -->
+      <section class="about-section" id="about">
+        <h2 data-lang-key="about_title">About Score Predictor</h2>
+        <div class="about-content">
+          <img
+            alt="Team of diverse professionals working together on sports analytics and prediction software in a modern office"
+            height="200"
+            src="https://storage.googleapis.com/a1aa/image/abe09367-5828-460b-d4c2-27dee39e4ee2.jpg"
+            width="300"
+          />
+          <div class="about-text">
+            <p data-lang-key="about_p1">
+              Score Predictor was founded with the mission to empower sports
+              enthusiasts and professionals with accurate and reliable score
+              forecasting tools. Our team combines expertise in data science,
+              sports analytics, and software development to deliver a seamless
+              experience.
+            </p>
+            <p data-lang-key="about_p2">
+              We continuously innovate and update our algorithms to reflect the
+              latest trends and statistics in the sports world. Our commitment
+              to privacy and user satisfaction drives everything we do.
+            </p>
+            <p data-lang-key="about_p3">
+              Join thousands of users who trust Score Predictor to gain an edge
+              in their sports predictions and enjoy a smarter way to follow the
+              games.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- Contact Section -->
+      <section class="contact-section" id="contact">
+        <h2 data-lang-key="contact_title">Contact Us</h2>
+        <form action="#" class="mx-auto" method="POST" style="max-width: 600px">
+          <div class="mb-3">
+            <label
+              class="form-label fw-semibold"
+              for="name"
+              data-lang-key="contact_name_label"
+            >
+              Name
+            </label>
+            <input
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Your full name"
+              required=""
+              type="text"
+            />
+          </div>
+          <div class="mb-3">
+            <label
+              class="form-label fw-semibold"
+              for="email"
+              data-lang-key="contact_email_label"
+            >
+              Email
+            </label>
+            <input
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required=""
+              type="email"
+            />
+          </div>
+          <div class="mb-3">
+            <label
+              class="form-label fw-semibold"
+              for="message"
+              data-lang-key="contact_message_label"
+            >
+              Message
+            </label>
+            <textarea
+              class="form-control"
+              id="message"
+              name="message"
+              placeholder="Write your message here"
+              required=""
+              rows="4"
+            ></textarea>
+          </div>
+          <button
+            class="btn btn-light w-100 fw-bold rounded-pill"
+            type="submit"
+            data-lang-key="contact_send_btn"
+          >
+            Send Message
+          </button>
+        </form>
+        <div class="contact-info mt-4 text-center text-secondary">
+          <p>
+            <i class="fas fa-phone-alt me-2"> </i>
+            +93(785678006)
+          </p>
+          <p>
+            <i class="fas fa-envelope me-2"> </i>
+            elhamuddinmayar@gmail.com
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"> </i>
+            Kabul University,Kabul,Afghanistan
+          </p>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const translations = {
+        en: {
+          home_title: "Welcome to Kankor Score Predictor",
+          home_desc:
+            "Predict your game scores with confidence and precision. Our advanced algorithms help you forecast outcomes and stay ahead.",
+          feature1: "Accurate score predictions based on real data",
+          feature2: "User-friendly interface for quick access",
+          feature3: "Regular updates with latest sports statistics",
+          feature4: "Customizable alerts and notifications",
+          feature5: "Secure and private user data handling",
+          btn_predict: "Predict Score",
+          features_title: "Features",
+          feature_analytics_title: "Advanced Data Analytics",
+          feature_analytics_desc:
+            "Leverage cutting-edge algorithms to analyze vast sports data for precise score predictions.",
+          feature_ui_title: "User-Friendly Interface",
+          feature_ui_desc:
+            "Navigate easily through a clean and intuitive design optimized for all devices.",
+          feature_realtime_title: "Real-Time Updates",
+          feature_realtime_desc:
+            "Stay informed with the latest sports statistics and score changes as they happen.",
+          feature_notifications_title: "Customizable Notifications",
+          feature_notifications_desc:
+            "Set personalized alerts to never miss important game updates or predictions.",
+          feature_security_title: "Secure & Private",
+          feature_security_desc:
+            "Your data is protected with top-tier security measures ensuring privacy and confidentiality.",
+          feature_support_title: "24/7 Support",
+          feature_support_desc:
+            "Our dedicated team is always ready to assist you with any questions or issues.",
+          about_title: "About Score Predictor",
+          about_p1:
+            "Score Predictor was founded with the mission to empower sports enthusiasts and professionals with accurate and reliable score forecasting tools. Our team combines expertise in data science, sports analytics, and software development to deliver a seamless experience.",
+          about_p2:
+            "We continuously innovate and update our algorithms to reflect the latest trends and statistics in the sports world. Our commitment to privacy and user satisfaction drives everything we do.",
+          about_p3:
+            "Join thousands of users who trust Score Predictor to gain an edge in their sports predictions and enjoy a smarter way to follow the games.",
+          contact_title: "Contact Us",
+          contact_name_label: "Name",
+          contact_email_label: "Email",
+          contact_message_label: "Message",
+          contact_send_btn: "Send Message",
+        },
+        ps: {
+          home_title: "د کانکور سکور پیشګوی ته ښه راغلاست",
+          home_desc:
+            "خپل د لوبې نمرې په باور او دقت سره وړاندوینه وکړئ. زموږ پرمختللي الگوریتمونه تاسو سره مرسته کوي چې پایلې وړاندوینه کړئ او مخکې پاتې شئ.",
+          feature1: "د ریښتیني معلوماتو پراساس دقیقې نمرې وړاندوینه",
+          feature2: "د کاروونکي دوستانه انٹرفیس د چټک لاسرسي لپاره",
+          feature3: "د وروستیو سپورتي احصایو سره منظم تازه معلومات",
+          feature4: "د خبرتیاوو او اطلاعونو دودیز کول",
+          feature5: "د کارونکي معلوماتو خوندي او محرم اداره کول",
+          btn_predict: "د نمرې وړاندوینه",
+          features_title: "ځانګړتیاوې",
+          feature_analytics_title: "پرمختللي ډیټا تحلیلونه",
+          feature_analytics_desc:
+            "د دقیقو نمرې وړاندوینې لپاره د سپورټ پراخه ډیټا تحلیلولو لپاره پرمختللي الگوریتمونه وکاروئ.",
+          feature_ui_title: "د کاروونکي دوستانه انٹرفیس",
+          feature_ui_desc:
+            "په ټولو وسیلو کې د پاک او ساده ډیزاین له لارې په اسانۍ سره حرکت وکړئ.",
+          feature_realtime_title: "په ریښتیني وخت کې تازه معلومات",
+          feature_realtime_desc:
+            "د وروستیو سپورتي احصایو او د نمرې بدلونونو سره تازه اوسئ.",
+          feature_notifications_title: "د خبرتیاوو دودیز کول",
+          feature_notifications_desc:
+            "شخصي خبرتیاوې تنظیم کړئ ترڅو هیڅ مهم تازه معلومات له لاسه ورنکړئ.",
+          feature_security_title: "خوندي او محرم",
+          feature_security_desc:
+            "ستاسو معلومات د لوړ امنیتي تدابیرو سره خوندي دي چې محرمیت تضمینوي.",
+          feature_support_title: "۲۴/۷ ملاتړ",
+          feature_support_desc:
+            "زموږ وقف شوی ټیم تل ستاسو د پوښتنو یا ستونزو سره د مرستې لپاره چمتو دی.",
+          about_title: "د سکور پیشګوی په اړه",
+          about_p1:
+            "د سکور پیشګوی د دې ماموریت سره تاسیس شو چې سپورتي مینه وال او مسلکي کسان د دقیقو او باور وړ نمرې وړاندوینې وسیلو سره ځواکمن کړي. زموږ ټیم د ډیټا ساینس، سپورټي تحلیلونو، او سافټویر پراختیا کې تخصص لري ترڅو یو بې ساری تجربه وړاندې کړي.",
+          about_p2:
+            "موږ په دوامداره توګه خپل الگوریتمونه نوي کوو ترڅو د سپورټ نړۍ وروستي رجحانات او احصایې منعکس کړي. زموږ ژمنتیا د محرمیت او د کارونکي رضایت زموږ ټول کارونه پرمخ وړي.",
+          about_p3:
+            "زموږ سره یوځای شئ چې زرګونه کاروونکي د سکور پیشګوی باور لري ترڅو په خپلو سپورتي وړاندوینو کې مخکښ شي او د لوبو تعقیب لپاره هوښیار لاره ولري.",
+          contact_title: "موږ سره اړیکه ونیسئ",
+          contact_name_label: "نوم",
+          contact_email_label: "بریښنالیک",
+          contact_message_label: "پیغام",
+          contact_send_btn: "پیغام واستوئ",
+        },
+        fa: {
+          home_title: "به پیش‌بینی نمره کانکور خوش آمدید",
+          home_desc:
+            "نمرات بازی خود را با اطمینان و دقت پیش‌بینی کنید. الگوریتم‌های پیشرفته ما به شما کمک می‌کنند نتایج را پیش‌بینی کرده و جلوتر باشید.",
+          feature1: "پیش‌بینی دقیق نمرات بر اساس داده‌های واقعی",
+          feature2: "رابط کاربری آسان برای دسترسی سریع",
+          feature3: "به‌روزرسانی‌های منظم با آخرین آمار ورزشی",
+          feature4: "اعلان‌ها و هشدارهای قابل تنظیم",
+          feature5: "مدیریت امن و خصوصی داده‌های کاربر",
+          btn_predict: "پیش‌بینی نمره",
+          features_title: "ویژگی‌ها",
+          feature_analytics_title: "تحلیل داده‌های پیشرفته",
+          feature_analytics_desc:
+            "استفاده از الگوریتم‌های پیشرفته برای تحلیل داده‌های گسترده ورزشی جهت پیش‌بینی دقیق نمرات.",
+          feature_ui_title: "رابط کاربری آسان",
+          feature_ui_desc:
+            "به راحتی از طریق طراحی تمیز و شهودی در همه دستگاه‌ها حرکت کنید.",
+          feature_realtime_title: "به‌روزرسانی‌های لحظه‌ای",
+          feature_realtime_desc:
+            "با آخرین آمار ورزشی و تغییرات نمره به‌روز بمانید.",
+          feature_notifications_title: "اعلان‌های قابل تنظیم",
+          feature_notifications_desc:
+            "هشدارهای شخصی‌سازی شده تنظیم کنید تا هیچ به‌روزرسانی مهمی را از دست ندهید.",
+          feature_security_title: "امن و خصوصی",
+          feature_security_desc:
+            "داده‌های شما با تدابیر امنیتی برتر محافظت می‌شود که حریم خصوصی را تضمین می‌کند.",
+          feature_support_title: "پشتیبانی ۲۴/۷",
+          feature_support_desc:
+            "تیم اختصاصی ما همیشه آماده پاسخگویی به سوالات یا مشکلات شماست.",
+          about_title: "درباره پیش‌بینی نمره",
+          about_p1:
+            "پیش‌بینی نمره با هدف توانمندسازی علاقه‌مندان و حرفه‌ای‌های ورزشی با ابزارهای دقیق و قابل اعتماد پیش‌بینی نمره تأسیس شد. تیم ما تخصص در علم داده، تحلیل ورزشی و توسعه نرم‌افزار را ترکیب می‌کند تا تجربه‌ای بی‌نظیر ارائه دهد.",
+          about_p2:
+            "ما به طور مداوم الگوریتم‌های خود را به‌روزرسانی می‌کنیم تا آخرین روندها و آمارهای دنیای ورزش را منعکس کنیم. تعهد ما به حریم خصوصی و رضایت کاربران، همه کارهای ما را هدایت می‌کند.",
+          about_p3:
+            "به هزاران کاربری بپیوندید که به پیش‌بینی نمره اعتماد دارند تا در پیش‌بینی‌های ورزشی خود برتری پیدا کنند و راهی هوشمندانه‌تر برای دنبال کردن بازی‌ها داشته باشند.",
+          contact_title: "تماس با ما",
+          contact_name_label: "نام",
+          contact_email_label: "ایمیل",
+          contact_message_label: "پیام",
+          contact_send_btn: "ارسال پیام",
+        },
+      };
+
+      function setLanguage(lang) {
+        const elements = document.querySelectorAll("[data-lang-key]");
+        elements.forEach((el) => {
+          const key = el.getAttribute("data-lang-key");
+          if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+        // Update language dropdown button text
+        const langButton = document.getElementById("languageDropdown");
+        if (lang === "en") langButton.textContent = "English";
+        else if (lang === "ps") langButton.textContent = "پښتو";
+        else if (lang === "fa") langButton.textContent = "دری";
+      }
+
+      document.querySelectorAll(".lang-option").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const selectedLang = btn.getAttribute("data-lang");
+          setLanguage(selectedLang);
+        });
+      });
+
+      // Initialize default language
+      setLanguage("en");
+    </script>
+  </body>
+</html>

@@ -54,3 +54,8 @@ def login_view(request):
             messages.error(request, 'Invalid username/email or password.')
 
     return render(request, 'registration/login.html')  # <- Ensure this template exists and is correct
+
+
+def log_out_view(request):
+    logout(request)
+    return redirect("login")

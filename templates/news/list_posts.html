@@ -1,0 +1,39 @@
+<h2>All Posts</h2>
+<a href="{% url 'posts:create_post' %}">Create New Post</a>
+
+{% for post in posts %}
+<div style="border: 1px solid #ccc; margin-bottom: 20px; padding: 10px">
+  <p><strong>{{ post.author.username }}</strong> at {{ post.created_at }}</p>
+  <p>{{ post.text|linebreaks }}</p>
+
+  {% if post.image %}
+  <img src="{{ post.image.url }}" width="300" />
+  {% endif %} {% if post.video %}
+  <video width="320" height="240" controls>
+    <source src="{{ post.video.url }}" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  {% endif %}
+
+  <p>
+    Likes: {{ post.likes_count }} | Dislikes: {{ post.dislikes_count }}
+
+    <a href="{% url 'posts:like_dislike' post.id 'like' %}">Like</a> |
+    <a href="{% url 'posts:like_dislike' post.id 'dislike' %}">Dislike</a>
+  </p>
+
+  <h4>Comments:</h4>
+  {% for comment in post.comments.all %}
+  <p><strong>{{ comment.user.username }}</strong>: {{ comment.text }}</p>
+  {% empty %}
+  <p>No comments yet.</p>
+  {% endfor %}
+
+  <form action="{% url 'posts:add_comment' post.id %}" method="post">
+    {% csrf_token %}
+    <label>Add Comment:</label><br />
+    <textarea name="text" rows="2" cols="40" required></textarea><br />
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{% endfor %}
