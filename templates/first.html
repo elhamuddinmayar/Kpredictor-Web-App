@@ -1,162 +1,840 @@
-{% extends "base.html" %} {% block content %}
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <a href="{% url "logout" %}">logout</a>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Ribbons</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-    <!-- /.container-fluid -->
-  </section>
+{% load static %} {% block content %} 
 
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Ribbons</h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-4">
-                  <div
-                    class="position-relative p-3 bg-gray"
-                    style="height: 180px"
-                  >
-                    <div class="ribbon-wrapper">
-                      <div class="ribbon bg-primary">Ribbon</div>
-                    </div>
-                    Ribbon Default <br />
-                    <small>.ribbon-wrapper.ribbon-lg .ribbon</small>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div
-                    class="position-relative p-3 bg-gray"
-                    style="height: 180px"
-                  >
-                    <div class="ribbon-wrapper ribbon-lg">
-                      <div class="ribbon bg-info">Ribbon Large</div>
-                    </div>
-                    Ribbon Large <br />
-                    <small>.ribbon-wrapper.ribbon-lg .ribbon</small>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div
-                    class="position-relative p-3 bg-gray"
-                    style="height: 180px"
-                  >
-                    <div class="ribbon-wrapper ribbon-xl">
-                      <div class="ribbon bg-secondary">Ribbon Extra Large</div>
-                    </div>
-                    Ribbon Extra Large <br />
-                    <small>.ribbon-wrapper.ribbon-xl .ribbon</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row mt-4">
-                <div class="col-sm-4">
-                  <div
-                    class="position-relative p-3 bg-gray"
-                    style="height: 180px"
-                  >
-                    <div class="ribbon-wrapper ribbon-lg">
-                      <div class="ribbon bg-success text-lg">Ribbon</div>
-                    </div>
-                    Ribbon Large <br />
-                    with Large Text <br />
-                    <small>.ribbon-wrapper.ribbon-lg .ribbon.text-lg</small>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div
-                    class="position-relative p-3 bg-gray"
-                    style="height: 180px"
-                  >
-                    <div class="ribbon-wrapper ribbon-xl">
-                      <div class="ribbon bg-warning text-lg">Ribbon</div>
-                    </div>
-                    Ribbon Extra Large <br />
-                    with Large Text <br />
-                    <small>.ribbon-wrapper.ribbon-xl .ribbon.text-lg</small>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div
-                    class="position-relative p-3 bg-gray"
-                    style="height: 180px"
-                  >
-                    <div class="ribbon-wrapper ribbon-xl">
-                      <div class="ribbon bg-danger text-xl">Ribbon</div>
-                    </div>
-                    Ribbon Extra Large <br />
-                    with Extra Large Text <br />
-                    <small>.ribbon-wrapper.ribbon-xl .ribbon.text-xl</small>
-                  </div>
-                </div>
-              </div>
-              <div class="row mt-4">
-                <div class="col-sm-4">
-                  <div class="position-relative">
-                    <img
-                      src="../../dist/img/photo1.png"
-                      alt="Photo 1"
-                      class="img-fluid"
-                    />
-                    <div class="ribbon-wrapper ribbon-lg">
-                      <div class="ribbon bg-success text-lg">Ribbon</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="position-relative">
-                    <img
-                      src="../../dist/img/photo2.png"
-                      alt="Photo 2"
-                      class="img-fluid"
-                    />
-                    <div class="ribbon-wrapper ribbon-xl">
-                      <div class="ribbon bg-warning text-lg">Ribbon</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="position-relative" style="min-height: 180px">
-                    <img
-                      src="../../dist/img/photo3.jpg"
-                      alt="Photo 3"
-                      class="img-fluid"
-                    />
-                    <div class="ribbon-wrapper ribbon-xl">
-                      <div class="ribbon bg-danger text-xl">Ribbon</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- /.card-body -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kpredictore</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/fontawesome-free/css/all.min.css' %}"
+    />
+    <link
+  rel="stylesheet"
+  href="{% static 'plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'%}"
+/>
+    <style>
+      :root {
+        --orange: #ff6b00;
+        --orange-light: #ff8e3c;
+        --orange-dark: #e55c00;
+        --black: #000000;
+        --dark: #121212;
+        --gray: #1e1e1e;
+        --light: #f5f5f5;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: var(--dark);
+        color: var(--light);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* Header Styles */
+      .navbar {
+        background-color: rgba(0, 0, 0, 0.9) !important;
+        padding: 20px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 15px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar-brand {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--orange) !important;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand i {
+        margin-right: 10px;
+        color: var(--orange);
+      }
+
+      .navbar-nav .nav-link {
+        color: var(--light) !important;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        position: relative;
+        margin: 0 10px;
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: var(--orange) !important;
+      }
+
+      .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: var(--orange);
+        left: 0;
+        bottom: 0;
+        transition: width 0.3s ease;
+      }
+
+      .navbar-nav .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .btn-orange {
+        background: var(--orange);
+        color: #000;
+        border-radius: 50px;
+        padding: 12px 28px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid var(--orange);
+        box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-orange:hover {
+        background: transparent;
+        color: var(--orange);
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+      }
+
+      .btn-outline-orange {
+        background: transparent;
+        color: var(--orange);
+        border-radius: 50px;
+        padding: 12px 28px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid var(--orange);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-outline-orange:hover {
+        background: var(--orange);
+        color: #000;
+        transform: translateY(-5px);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 180px 0 100px;
+        background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+          radial-gradient(
+            circle at top right,
+            rgba(255, 107, 0, 0.1) 0%,
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at bottom left,
+            rgba(255, 107, 0, 0.1) 0%,
+            transparent 40%
+          );
+        background-size: cover;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+
+      .hero h1 span {
+        color: var(--orange);
+        display: block;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: #ccc;
+        margin-bottom: 30px;
+      }
+
+      .hero-img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 25px 50px rgba(255, 107, 0, 0.2);
+        animation: float 6s ease-in-out infinite;
+        border: 2px solid var(--orange);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 100px 0;
+        background: var(--black);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .section-title h2 span {
+        color: var(--orange);
+      }
+
+      .section-title p {
+        font-size: 1.1rem;
+        color: #999;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .feature-card {
+        background: var(--gray);
+        border-radius: 15px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(255, 107, 0, 0.3);
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .feature-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
+        border-color: var(--orange);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 107, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        transition: all 0.3s ease;
+      }
+
+      .feature-icon i {
+        font-size: 36px;
+        color: var(--orange);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover .feature-icon {
+        background: rgba(255, 107, 0, 0.2);
+        transform: rotate(10deg) scale(1.1);
+      }
+
+      .feature-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        color: #fff;
+      }
+
+      .feature-card p {
+        color: #aaa;
+      }
+
+      /* Stats Section */
+      .stats {
+        padding: 80px 0;
+        background: linear-gradient(135deg, var(--black) 0%, var(--dark) 100%);
+        border-top: 1px solid rgba(255, 107, 0, 0.2);
+        border-bottom: 1px solid rgba(255, 107, 0, 0.2);
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 30px;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--orange);
+        margin-bottom: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .stat-text {
+        font-size: 1.1rem;
+        color: #ccc;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* CTA Section */
+      .cta {
+        padding: 100px 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95)),
+          radial-gradient(
+            circle at center,
+            rgba(255, 107, 0, 0.15) 0%,
+            transparent 60%
+          );
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta h2 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+      }
+
+      .cta h2 span {
+        color: var(--orange);
+      }
+
+      .cta p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        color: #ccc;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 100px 0;
+        background: var(--black);
+      }
+
+      .testimonial-card {
+        background: var(--gray);
+        border-radius: 15px;
+        padding: 30px;
+        margin: 20px 0;
+        border-left: 4px solid var(--orange);
+        transition: all 0.3s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(255, 107, 0, 0.1);
+      }
+
+      .testimonial-content {
+        color: #ddd;
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .testimonial-author img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+        border: 2px solid var(--orange);
+      }
+
+      .author-info h4 {
+        color: var(--orange);
+        margin-bottom: 0;
+      }
+
+      .author-info p {
+        color: #aaa;
+        margin-bottom: 0;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--black);
+        color: white;
+        padding: 70px 0 30px;
+        border-top: 1px solid rgba(255, 107, 0, 0.2);
+      }
+
+      .footer-column h3 {
+        font-size: 1.4rem;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 10px;
+        color: var(--orange);
+      }
+
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 3px;
+        background: var(--orange);
+        bottom: 0;
+        left: 0;
+      }
+
+      .footer-column p {
+        color: #aaa;
+        margin-bottom: 20px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 107, 0, 0.1);
+        color: var(--orange);
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background: var(--orange);
+        color: #000;
+        transform: translateY(-3px);
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--orange);
+        padding-left: 5px;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #777;
+        font-size: 0.9rem;
+        margin-top: 40px;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(0.8);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.4;
+        }
+        100% {
+          transform: scale(0.8);
+          opacity: 0.7;
+        }
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 992px) {
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          padding: 150px 0 80px;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .navbar-brand {
+          font-size: 24px;
+        }
+
+        .cta h2 {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-fire"></i> Kpredictore
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+         
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'welcome' %}">Predictor</a>
+            </li>
+         
+            <li class="nav-item">
+              <a class="nav-link" href="#">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Info</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+          {% if not user.is_authenticated %}
+          <div class="d-flex ms-lg-3 mt-3 mt-lg-0">
+            <a href="{% url 'login'%}" class="btn btn-outline-orange me-2"
+              >Sign In</a
+            >
+            <a href="{% url 'register'%}" class="btn btn-orange">Sign Up</a>
           </div>
-          <!-- /.card -->
+{% else%}
+<div class="d-flex ms-lg-3 mt-3 mt-lg-0">
+              <a href="{% url 'logout'%}" class="btn btn-outline-orange me-2"
+              >Log Out</a
+            >
         </div>
-        <!-- /.col -->
+          {% endif %}
+          
       </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
-</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1>Enhance Your <span>Learning Journey</span></h1>
+            <p>
+              An innovative platform designed to support students and educators
+              in creating engaging and effective educational content with ease.
+              Join thousands of learners and teachers worldwide who are
+              transforming education through technology.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <a href="#" class="btn btn-orange">Get Started</a>
+              <a href="#" class="btn btn-outline-orange">View Demo</a>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-5 mt-lg-0">
+            <img
+              src="{% static 'pictures/cover1.jpg'%}"
+              alt="Digital Experience"
+              class="hero-img img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our <span>Features</span></h2>
+          <p>
+            Discover the powerful tools that will transform your workflow and
+            boost productivity
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3>Lightning Fast</h3>
+              <p>
+                Optimized for speed and performance to ensure your work flows
+                smoothly.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3>Enterprise Security</h3>
+              <p>
+                Military-grade encryption to keep your data safe at all times.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-sync-alt"></i>
+              </div>
+              <h3>Seamless Sync</h3>
+              <p>
+                Real-time synchronization technology across all your devices.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3>Advanced Analytics</h3>
+              <p>
+                Powerful analytics dashboard and reporting tools for insights.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <div class="stat-number" data-count="10000">10K+</div>
+              <div class="stat-text">Active Users</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <div class="stat-number">99.9%</div>
+              <div class="stat-text">Uptime</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <div class="stat-number">24/7</div>
+              <div class="stat-text">Support</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-6">
+            <div class="stat-item">
+              <div class="stat-number">98%</div>
+              <div class="stat-text">Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-title">
+          <h2>What Our <span>Clients Say</span></h2>
+          <p>Hear from businesses that have transformed with our platform</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                "This platform has completely transformed our workflow. The
+                analytics tools alone have saved us hours of manual reporting
+                each week."
+              </div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contact-section" id="contact">
+        <h2 data-lang-key="contact_title">Contact Us</h2>
+        <form action="#" class="mx-auto" method="POST" style="max-width: 600px">
+          <div class="mb-3">
+            <label
+              class="form-label fw-semibold"
+              for="name"
+              data-lang-key="contact_name_label"
+            >
+              Name
+            </label>
+            <input
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Your full name"
+              required=""
+              type="text"
+            />
+          </div>
+          <div class="mb-3">
+            <label
+              class="form-label fw-semibold"
+              for="email"
+              data-lang-key="contact_email_label"
+            >
+              Email
+            </label>
+            <input
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required=""
+              type="email"
+            />
+          </div>
+          <div class="mb-3">
+            <label
+              class="form-label fw-semibold"
+              for="message"
+              data-lang-key="contact_message_label"
+            >
+              Message
+            </label>
+            <textarea
+              class="form-control"
+              id="message"
+              name="message"
+              placeholder="Write your message here"
+              required=""
+              rows="4"
+            ></textarea>
+          </div>
+          <button
+            class="btn btn-light w-100 fw-bold rounded-pill"
+            type="submit"
+            data-lang-key="contact_send_btn"
+          >
+            Send Message
+          </button>
+        </form>
+        <div class="contact-info mt-4 text-center text-secondary">
+          <p>
+            <i class="fas fa-phone-alt me-2"> </i>
+            +93(785678006)
+          </p>
+          <p>
+            <i class="fas fa-envelope me-2"> </i>
+            elhamuddinmayar@gmail.com
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"> </i>
+            Kabul University,Kabul,Afghanistan
+          </p>
+        </div>
+      </section>
+      <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'plugins/sweetalert2/sweetalert2.min.js' %}"></script>
+  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+  <script>
+    (() => {
+      "use strict";
+      const forms = document.querySelectorAll("form");
+      Array.from(forms).forEach((form) => {
+        form.addEventListener(
+          "submit",
+          (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    })();
+  </script>
+
+  <script>
+    $(function () {
+      var Toast = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+
+      {% if messages %}
+        {% for message in messages %}
+          Toast.fire({
+            icon: "{% if 'error' in message.tags %}error{% elif 'warning' in message.tags %}warning{% elif 'info' in message.tags %}info{% else %}success{% endif %}",
+            title: "{{ message|escapejs }}",
+          });
+        {% endfor %}
+      {% endif %}
+
+      $(".swalDefaultError").click(function () {
+        // Your click logic here if needed
+      });
+    });
+  </script>
+  </body>
+</html>
 {% endblock %}

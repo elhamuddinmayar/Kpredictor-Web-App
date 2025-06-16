@@ -2,13 +2,15 @@ import os
 import pandas as pd
 from django.shortcuts import render
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def welcome_view(request):
     return render(request, 'predictor/welcome.html')
-
+@login_required
 def input_view(request):
     return render(request, 'predictor/input.html')
-
+@login_required
 def predict(request):
     if request.method == 'POST':
         # 🟡 1. Collect student scores from POST

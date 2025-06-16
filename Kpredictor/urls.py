@@ -10,7 +10,7 @@ urlpatterns = [
     path('home/',Account.views.welcome,name="home"),
     path('account/', include('Account.urls')),
     path('news/', include('news.urls')),
-    path('predictor/', include('predictor.urls')),
+    path('predictor/', include('predictor.urls'),name="predictor"),
     
 ]
 

@@ -49,6 +49,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
+            messages.success(request, '🦋Successfull login🦋.')
             return redirect('home')  # <- Make sure 'home' route exists in your urls.py
         else:
             messages.error(request, 'Invalid username/email or password.')
